@@ -10,7 +10,7 @@ var cdbAno = document.querySelector(".taxaCDB").value / 100;
 
 var vInvertir = 0;
 var vMes = 0;
-var totalInvestido = 0
+var totalInvestido = 0;
 
 fnTotal();
 function fnCdi(v) {
@@ -19,7 +19,33 @@ function fnCdi(v) {
 }
 function fnCdb(v) {
   cdbAno = v / 100;
+}
+function unMask(v) {
+  if (v) {
+    return v
+      .replace(/\./g, "") // remove todos os .
+      .replace(/\,/g, "") // remove todos os .
+      .replace(/\R/g, "") // remove todos os .
+      .replace(/\$/g, "") // remove todos os .
+      .replace(/\-/g, "") // remove todos os -
+      .replace(/\(/g, "") // remove todos os (
+      .replace(/\)/g, "") // remove todos os )
+      .replace(/\//g, "") // remove todos os /
+      .replace(/\s/g, ""); // remove todos os " "
+  }
+  10;
+  return v;
+}
 
+function fnValorMes(v) {
+  vMes = Number(unMask(v) / 100);
+  console.log("", vInvertir);
+  fnTotal();
+}
+function fnValorInvestir(v) {
+  vInvertir = Number(unMask(v) / 100);
+  console.log("", vInvertir);
+  fnTotal();
 }
 //  fetch("http://ipeadata.gov.br/api/odata4/ValoresSerie(SERCODIGO='BM12_TJCDI12')")
 //  .then(res => res.json())
@@ -51,24 +77,35 @@ function investirMesMenos(v) {
     vMes = vMes - v;
     fnTotal();
   }
-
 }
 function fnTotal() {
   var montante = 0;
-  totalInvestido = 0
+  totalInvestido = 0;
   for (var x = 1; x <= meses; x++) {
-    montante =
-      montante +
-      Number(vMes) * Math.pow(1 + cdbAno * cdiAno, x / 12);
-      totalInvestido = totalInvestido + vMes
-    }
-    resultado.innerHTML = (Number(vInvertir) * Math.pow(1 + cdbAno * cdiAno, meses / 12) + montante).toLocaleString("pt-br", { style: "currency", currency: "BRL" });
-    valorInvestir.innerHTML = vInvertir.toLocaleString("pt-br", { style: "currency", currency: "BRL", });
-    valorMes.innerHTML = vMes.toLocaleString("pt-br", { style: "currency", currency: "BRL", });
-    
-    totalInvestido = totalInvestido + vInvertir
-    totalI.innerHTML = 'Total investido: ' + totalInvestido.toLocaleString("pt-br", { style: "currency", currency: "BRL", });
-    console.log('',totalInvestido)
+    montante = montante + Number(vMes) * Math.pow(1 + cdbAno * cdiAno, x / 12);
+    totalInvestido = totalInvestido + vMes;
+  }
+  resultado.innerHTML = (
+    Number(vInvertir) * Math.pow(1 + cdbAno * cdiAno, meses / 12) +
+    montante
+  ).toLocaleString("pt-br", { style: "currency", currency: "BRL" });
+  valorInvestir.value = vInvertir.toLocaleString("pt-br", {
+    style: "currency",
+    currency: "BRL",
+  });
+  valorMes.value = vMes.toLocaleString("pt-br", {
+    style: "currency",
+    currency: "BRL",
+  });
+
+  totalInvestido = totalInvestido + vInvertir;
+  totalI.innerHTML =
+    "Total investido: " +
+    totalInvestido.toLocaleString("pt-br", {
+      style: "currency",
+      currency: "BRL",
+    });
+  console.log("", totalInvestido);
 }
 fnTotal();
 function bar(e) {

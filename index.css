@@ -1,10 +1,11 @@
-@font-face{
+@font-face {
   font-family: "Graphik";
   src: url("Graphik-Medium.ttf");
 }
 :root {
   --cor1: #722d9c;
 }
+
 .bar {
   -webkit-appearance: none;
   width: 100%;
@@ -37,8 +38,13 @@ img {
 }
 
 input {
-  width: 100px;
-  text-align: center;
+  width: 500px;
+  border: 0;
+}
+input:focus {
+  width: 500px;
+  border: 0;
+  outline: 0;
 }
 .per {
   font-size: 24px;
