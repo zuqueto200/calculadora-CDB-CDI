@@ -14,9 +14,9 @@
     <title>Document</title>
   </head>
 
-  <body class="d-flex justify-content-center mt-5">
-    <div style="width: 250px" class="calculadora">
-      <div class="d-flex justify-content-center mb-4">
+  <body class="d-flex justify-content-center">
+    <div class="esquedo p-5" style="width: 600px">
+      <div class="d-flex justify-content-center mb-4 d-none">
         <div class="text-center me-3">
           <label> CDB - anual</label>
           <input
@@ -26,6 +26,7 @@
             value="150"
             onkeypress="return event.charCode >= 48 && event.charCode <= 57" />
         </div>
+
         <div class="text-center ms-3">
           <label> CDI - anual</label>
           <input
@@ -48,28 +49,35 @@
         </div>
       </div>
       <div class="centro">
-        <img class="btn" onclick="investirMenos(250)" src="menos.png" />
+        <h6 class="per" style="max-width: 400px">
+          Para começar, qual valor você gostaria de investir?
+        </h6>
 
-        <span class="valorInvestir">0</span>
+        <div class="d-flex align-items-center justify-content-between">
+          <h3 class="valorInvestir m-0 v1">0</h3>
 
-        <span>
-          <img class="btn" onclick="investirMais(250)" src="mais.png" />
-        </span>
+          <div>
+            <img class="btn" onclick="investirMenos(250)" src="menos.png" />
+            <img class="btn" onclick="investirMais(250)" src="mais.png" />
+          </div>
+        </div>
       </div>
 
-      <div class="centro">
-        <img class="btn" onclick="investirMesMenos(250)" src="menos.png" />
-
-        <span class="valorMes">0</span>
-
-        <span>
+      <h6 class="per" style="max-width: 400px">
+        E por mês, quanto gostaria de depositar?
+      </h6>
+      <div class="d-flex align-items-center justify-content-between">
+        <h3 class="valorMes m-0 v1">0</h3>
+        <div>
+          <img class="btn" onclick="investirMesMenos(250)" src="menos.png" />
           <img class="btn" onclick="investirMesMais(250)" src="mais.png" />
-        </span>
+        </div>
       </div>
 
       <br />
       <br />
-      <div class="nomeBar text-center">1 Mês</div>
+      <h6 class="per">Quanto tempo deixaria seu dinheiro investido?</h6>
+      <div class="nomeBar v1">1 Mês</div>
       <input
         class="bar"
         oninput="bar(this.value)"
@@ -78,9 +86,24 @@
         min="1"
         max="8"
         step="1" />
-
-      <div class="text-center mt-2">Rendimento</div>
-      <div class="text-center mt-2"><span class="resultado"></span></div>
+    </div>
+    <div class="direito p-5" style="width: 600px">
+      <h6 class="rendimento per">Em 1 mês você teria</h6>
+      <div class="mt-2 v2"><span class="resultado"></span></div>
+      <div class="barraDet"></div>
+      <h5 class="mt-3">Valor líquido sem os impostos descontados</h5>
+      <h5 class="mt-3 totalI"></h5>
+      <div class="pqno">
+        <p class="mb-2">
+          <img class="duvida" src="ente.png"  style="float:left ;"/>
+          Valores utilizados no simulador de investimentos (referentes à data de
+          última atualização - esses valores podem alterar de acordo com o
+          mercado):
+        </p>
+        <p class="ms-4">- Data da última atualização: 30/06/2022.</p>
+        <p class="ms-4">- Porcentagem de rentabilidade da Poupança: 0,50% a.m.</p>
+        <p class="ms-4">- Porcentagem de rentabilidade do CDB e LC: 127% do CDI.</p>
+      </div>
     </div>
   </body>
   <script src="index.js"></script>
